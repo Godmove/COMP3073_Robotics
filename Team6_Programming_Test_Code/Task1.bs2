@@ -1,0 +1,14 @@
+'{$STAMP BS2}
+'{$PBASIC 2.5}
+
+value VAR WORD
+
+DO
+	HIGH 6
+	PAUSE 10
+
+	
+	RCTIME 6, 1, value
+	DEBUG HOME, "the value = ",DEC value, "         ", CR
+
+LOOP

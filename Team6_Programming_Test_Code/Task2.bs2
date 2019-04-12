@@ -1,0 +1,9 @@
+'{$STAMP BS2}
+'{$PBASIC 2.5}
+
+DO
+	HIGH 9
+	LOW 9
+	PAUSE 500
+
+LOOP

@@ -1,0 +1,21 @@
+'{$STAMP BS2}
+'{$PBASIC 2.5}
+
+' Assume:
+' - LED is on pin 0
+
+' the loop goes 10 times (10s)
+times CON 10
+
+' Temporary variable for FOR loops
+i VAR Word
+
+FOR i = 1 TO times
+  HIGH 0
+  PAUSE 500
+
+  LOW 0
+  PAUSE 500
+NEXT
+
+END

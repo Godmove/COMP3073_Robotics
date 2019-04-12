@@ -1,0 +1,63 @@
+'{$STAMP BS2}
+'{$PBASIC 2.5}
+
+' Assume:
+' - Left servo is on pin 12
+' - Right servo is on pin 13
+
+ServoLeftPin  CON 12
+ServoRightPin CON 13
+
+ServoClockwisePulse        CON 650
+ServoCounterClockwisePulse CON 850
+
+' 40 iters for 1 secs
+OneSecIter CON 40
+
+' Temporary variables for FOR loops
+i VAR Word
+
+' Stage 1: 3s left clockwise, right counter-clockwise
+FOR i = 1 TO OneSecIter * 3
+  PULSOUT ServoLeftPin, ServoClockwisePulse
+  PULSOUT ServoRightPin, ServoCounterClockwisePulse
+  PAUSE 20
+NEXT
+
+GOSUB Break
+
+' Stage 2: 0.6s left and right clockwise
+FOR i = 1 TO 24 ' FIXME: 40 / 5 * 3 = 24
+  PULSOUT ServoLeftPin, ServoClockwisePulse
+  PULSOUT ServoRightPin, ServoClockwisePulse
+  PAUSE 20
+NEXT
+
+GOSUB Break
+
+' Stage 3: 0.6s left and right counter-clockwise
+FOR i = 1 TO 24 ' FIXME: 40 / 5 * 3 = 24
+  PULSOUT ServoLeftPin, ServoCounterClockwisePulse
+  PULSOUT ServoRightPin, ServoCounterClockwisePulse
+  PAUSE 20
+NEXT
+
+GOSUB Break
+
+' Stage 4: 3s left counter-clockwise, right clockwise
+FOR i = 1 TO OneSecIter * 3
+  PULSOUT ServoLeftPin, ServoCounterClockwisePulse
+  PULSOUT ServoRightPin, ServoClockwisePulse
+  PAUSE 20
+NEXT
+
+GOSUB Break
+
+' End
+END
+
+Break:
+  PULSOUT ServoLeftPin, 750
+  PULSOUT ServoRightPin, 750
+  PAUSE 20
+  RETURN
